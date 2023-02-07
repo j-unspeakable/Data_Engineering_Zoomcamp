@@ -44,21 +44,22 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """
     Write DataFrame out locally as parquet file.
     """
-    local_path = "/home/j_unspeakable/Programming/Data_Engineering_Zoomcamp/week_1/"
+    base_path = "/home/j_unspeakable/Programming/Data_Engineering_Zoomcamp/week_1/"
     path = Path(f"data/{color}/{dataset_file}.parquet")
-    local_path = os.path.join(local_path, path)
+
+    local_path = os.path.join(base_path, path)
 
     df.to_parquet(local_path, compression="gzip")
-    return path
+    return local_path, path
 
 
 @task(log_prints=True, tags=["gcs"])
-def write_gcs(path: Path) -> None:
+def write_gcs(local_path: Path, path: Path) -> None:
     """
     Upload local parquet file to GCS.
     """
     gcs_block = GcsBucket.load("de-zoomcamp1")
-    gcs_block.upload_from_path(from_path=path, to_path=path)
+    gcs_block.upload_from_path(from_path=local_path, to_path=path)
     return
 
 
@@ -72,8 +73,8 @@ def etl_web_to_gcs(year: int, month: int, color: str) -> None:
 
     df = fetch(dataset_url)
     df_clean = clean(df)
-    path = write_local(df_clean, color, dataset_file)
-    write_gcs(path)
+    local_path, path = write_local(df_clean, color, dataset_file)
+    write_gcs(local_path, path)
 
 
 @flow()
