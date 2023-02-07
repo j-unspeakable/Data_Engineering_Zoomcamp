@@ -45,7 +45,7 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """
     Write DataFrame out locally as parquet file.
     """
-    base_path = "/home/j_unspeakable/Programming/Data_Engineering_Zoomcamp/week_1/"
+    base_path = "/home/j_unspeakable/Programming/Data_Engineering_Zoomcamp/week_2/"
     path = Path(f"data/{color}/{dataset_file}.parquet")
 
     local_path = os.path.join(base_path, path)
