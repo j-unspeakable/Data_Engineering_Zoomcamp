@@ -1,13 +1,11 @@
 import os
 import pandas as pd
 from pathlib import Path
-from datetime import timedelta
 from prefect import flow, task
-from prefect.tasks import task_input_hash
 from prefect_gcp.cloud_storage import GcsBucket
 
 
-@task(log_prints=True, tags=["fetch"], cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1), retries=3)
+@task(log_prints=True, tags=["fetch"], retries=3)
 def fetch(dataset_url: str) -> pd.DataFrame:
     """
     Read taxi data from web into pandas DataFrame.
