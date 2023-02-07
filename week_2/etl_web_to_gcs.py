@@ -59,7 +59,7 @@ def write_gcs(local_path: Path, path: Path) -> None:
     """
     Upload local parquet file to GCS.
     """
-    gcs_block = GcsBucket.load("de-zoomcamp1")
+    gcs_block = GcsBucket.load("de-zoomcamp-gcs")
     gcs_block.upload_from_path(from_path=local_path, to_path=path)
     return
 
