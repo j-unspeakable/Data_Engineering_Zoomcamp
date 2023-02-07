@@ -27,6 +27,7 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     print(df.head())
     return df
 
+
 @task(log_prints=True, tags=["clean"])
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -84,6 +85,7 @@ def etl_parent_flow(year: int, months: list[int], color: str):
     """
     for month in months:
         etl_web_to_gcs(year, month, color)
+
 
 if __name__ == "__main__":
     color = "green"
