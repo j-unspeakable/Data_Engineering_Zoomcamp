@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from pathlib import Path
 from datetime import timedelta
@@ -45,8 +46,11 @@ def write_local(df: pd.DataFrame, color: str, dataset_file: str) -> Path:
     """
     Write DataFrame out locally as parquet file.
     """
+    local_path = "/home/j_unspeakable/Programming/Data_Engineering_Zoomcamp/week_1/"
     path = Path(f"data/{color}/{dataset_file}.parquet")
-    df.to_parquet(path, compression="gzip")
+    local_path = os.path.join(local_path, path)
+
+    df.to_parquet(local_path, compression="gzip")
     return path
 
 
