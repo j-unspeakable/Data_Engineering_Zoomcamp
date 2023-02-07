@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from pathlib import Path
 from datetime import timedelta
@@ -13,7 +12,7 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     Read taxi data from web into pandas DataFrame.
     """
     # Read data in chunks and concat after reading to reduce memory usage and avoid timeout.
-    chunk_size = 10000
+    chunk_size = 100000
     chunks = []
 
     # Use a for loop to read the data in chunks.
