@@ -12,7 +12,7 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     Read taxi data from web into pandas DataFrame.
     """
     # Read data in chunks and concat after reading to reduce memory usage and avoid timeout.
-    chunk_size = 100000
+    chunk_size = 10000
     chunks = []
 
     # Use a for loop to read the data in chunks.
@@ -28,7 +28,6 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     print(df.head())
     return df
 
-
 @task(log_prints=True, tags=["clean"])
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -36,7 +35,6 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     """
     df["lpep_pickup_datetime"] = pd.to_datetime(df["lpep_pickup_datetime"])
     df["lpep_dropoff_datetime"] = pd.to_datetime(df["lpep_dropoff_datetime"])
-    print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"rows: {len(df)}")
     return df
@@ -85,7 +83,7 @@ def etl_parent_flow(year: int, months: list[int], color: str):
         etl_web_to_gcs(year, month, color)
 
 if __name__ == "__main__":
-    color = "yellow"
-    months = [2, 3]
-    year = 2019
+    color = "green"
+    months = [11]
+    year = 2020
     etl_parent_flow(year, months, color)
