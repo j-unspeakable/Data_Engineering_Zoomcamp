@@ -8,13 +8,13 @@ from prefect_gcp.cloud_storage import GcsBucket
 
 
 @task(log_prints=True, tags=["extract"], cache_key_fn=task_input_hash, cache_expiration=timedelta(days=1))
-def extract_from_gcs(color: str, year: int, month: int) -> Path:
+def extract_from_gcs(year: int, month: int, color: str) -> Path:
     """
     Download trip data from GCS.
     """
     gcs_path = f"data/{color}/{color}_tripdata_{year}-{month:02}.parquet"
-    gcs_block = GcsBucket.load("zoom-gcs")
-    gcs_block.get_directory(from_path=gcs_path, local_path=f"../data/")
+    gcs_block = GcsBucket.load("de-zoomcamp-gcs")
+    gcs_block.get_directory(from_path=gcs_path, local_path=f"./")
     return Path(f"../data/{gcs_path}")
 
 
@@ -33,7 +33,7 @@ def write_bq(df: pd.DataFrame) -> None:
     """
     Write DataFrame to BiqQuery
     """
-    gcp_credentials_block = GcpCredentials.load("zoom-gcp-creds")
+    gcp_credentials_block = GcpCredentials.load("de-zoomcamp-cred1")
 
     df.to_gbq(
         destination_table="dezoomcamp.rides",
@@ -49,7 +49,7 @@ def etl_gcs_to_bq(year: int, month: int, color: str):
     """
     Main ETL flow to load data into Big Query
     """
-    path = extract_from_gcs(color, year, month)
+    path = extract_from_gcs(year, month, color)
     df = read(path)
     write_bq(df)
 
@@ -64,7 +64,7 @@ def etl_parent_flow(year: int, months: list[int], color: str):
 
 
 if __name__ == "__main__":
-    color = "yellow"
-    months = [2, 3]
     year = 2019
-    etl_parent_flow(months, year, color)
+    months = [2, 3]
+    color = "yellow"
+    etl_parent_flow(year, months, color)
