@@ -39,7 +39,7 @@ def write_bq(df: pd.DataFrame) -> None:
         destination_table="dezoomcamp.rides",
         project_id="prefect-sbx-community-eng",
         credentials=gcp_credentials_block.get_credentials_from_service_account(),
-        chunksize=500_000,
+        chunksize=500000,
         if_exists="append",
     )
 
