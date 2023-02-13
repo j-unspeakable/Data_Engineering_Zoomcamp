@@ -24,3 +24,11 @@ This repository contains tasks worked on during the [Data Engineering Zoomcamp](
 - Deployments were created and scheduled for execution using the Prefect Orion UI and in the Python Scripts
 - Storage Blocks were created in the Prefect Orion UI to store secret credentials/configurations and interact with external systems.
 - The Prefect Cloud was used to setup an Automation system that sends an E-mail notification when a workflow has been completed.
+
+<a name="week3"></a>
+## Week 3: Data Warehouse
+
+- BigQuery as a Data Warehouse solution.
+- Best practices in BigQuery (Cost reduction and query performance) was carried out using Partitioning and Clustering.
+- SQL for machine Learning in BigQuery.
+- BigQuery Machine Learning Deployment.
