@@ -32,3 +32,11 @@ This repository contains tasks worked on during the [Data Engineering Zoomcamp](
 - Best practices in BigQuery (Cost reduction and query performance) was carried out using Partitioning and Clustering.
 - SQL for machine Learning in BigQuery.
 - BigQuery Machine Learning Deployment.
+
+<a name="week4"></a>
+## Week 4: Analytics engineering
+- Introduction to Analytics Engineering
+- Data Modelling concepts
+- Data Transformation with DBT. 
+
+>> In summary, models were developed with the Yellow taxi data (Years 2019 and 2020), Green taxi data (Years 2019 and 2020), and fhv data (Year 2019). Tests were carried out and an extensive documentation was developed. Deployment was also implemented with best practices and a dashboard was created with Google's [looker studio](https://lookerstudio.google.com/).
