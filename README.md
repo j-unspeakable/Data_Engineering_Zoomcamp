@@ -35,8 +35,18 @@ This repository contains tasks worked on during the [Data Engineering Zoomcamp](
 
 <a name="week4"></a>
 ## Week 4: Analytics engineering
-- Introduction to Analytics Engineering
-- Data Modelling concepts
+- Introduction to Analytics Engineering.
+- Data Modeling concepts.
 - Data Transformation with DBT. 
 
 >> In summary, models were developed with the Yellow taxi data (Years 2019 and 2020), Green taxi data (Years 2019 and 2020), and fhv data (Year 2019). Tests were carried out and an extensive documentation was developed. Deployment was also implemented with best practices and a dashboard was created with Google's [looker studio](https://lookerstudio.google.com/).
+
+<a name="week5"></a>
+## Week 5: Batch processing
+- Introduction to batch processing (Emphasies on Spark).
+- Seting up a Local Spark Cluster.
+- Anatomy of a Spark Cluster.
+- Spark Dataframes (Pyspark).
+- GroupBy and Joins in Spark (How they work under the hood).
+- Spark RDDs (Resilient Distributed Datasets).
+- Running Spark in the Cloud (Connecting to GCS, Setting up a Dataproc Cluster, and connecting to BigQuery).
