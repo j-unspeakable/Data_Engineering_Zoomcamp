@@ -43,7 +43,7 @@ This repository contains tasks worked on during the [Data Engineering Zoomcamp](
 
 <a name="week5"></a>
 ## Week 5: Batch processing
-- Introduction to batch processing (Emphasies on Spark).
+- Introduction to batch processing (Emphasis on Spark).
 - Seting up a Local Spark Cluster.
 - Anatomy of a Spark Cluster.
 - Spark Dataframes (Pyspark).
